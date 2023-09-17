@@ -5,6 +5,6 @@ TARGETSRC = main.cpp # главный main файл
 TARGET = concept # цель -> исполняемый файл
 
 all: 	$(TARGETSRC)
-		mkdir ./$(BIN_DIR)
+		mkdir -p ./$(BIN_DIR)
 		$(CPP) $(FLAGS) -o $(PWD)/$(BIN_DIR)/$(TARGET) $(TARGETSRC)
 

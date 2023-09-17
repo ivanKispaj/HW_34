@@ -10,7 +10,7 @@
 #include <concepts>
 #include <string>
 template <typename T>
-concept ComplexConcept = std::has_virtual_destructor<T>::value &&
+concept ComplexConcept = !std::has_virtual_destructor<T>::value &&
                          requires(const T val) {
                              {
                                  val.hash()
@@ -35,7 +35,6 @@ struct User
         return std::to_string(num);
     }
 
-    virtual ~User(){};
 };
 
 struct User1
@@ -59,6 +58,7 @@ struct User2
     {
         return std::to_string(num);
     }
+    virtual ~User2(){};
 };
 
 struct User3
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     us.num = 15;
     testFunction(us);
     // testFunction(us1);
-    // testFunction(us2);
+    //testFunction(us2);
     // testFunction(us3);
     return 0;
 }
